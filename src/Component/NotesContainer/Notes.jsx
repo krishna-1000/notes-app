@@ -20,4 +20,3 @@ const Notes = ({ notes, setNotes,duration,setDuration }) => {
 }
 
 export default Notes
-87
