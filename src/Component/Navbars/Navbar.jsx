@@ -12,10 +12,10 @@ import { AiOutlineFullscreen } from "react-icons/ai";
 import { AiOutlineFullscreenExit } from "react-icons/ai";
 
 import { CiSettings } from "react-icons/ci";
-import DropDown from './NabarComponent/DropDown/DropDown';
-import DownloadDropDown from './NabarComponent/DownloadDropDown/DownloadDropDown';
-import TImerbox from './NabarComponent/TimerBox/TImerbox';
-import useFullScreen from '../hooks/useFullScreen';
+import DropDown from '../NabarComponent/DropDown/DropDown';
+import DownloadDropDown from '../NabarComponent/DownloadDropDown/DownloadDropDown';
+import TImerbox from '../NabarComponent/TimerBox/TImerbox';
+import useFullScreen from '../../hooks/useFullScreen';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ notes, onDeleteNote, onCopyNote, onShareNote, setDuration }) => {

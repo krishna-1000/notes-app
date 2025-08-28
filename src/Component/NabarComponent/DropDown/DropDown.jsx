@@ -11,21 +11,25 @@ import { CgGoogleTasks } from "react-icons/cg";
 
 import { LiaDiagnosesSolid } from "react-icons/lia";
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 
 const DropDown = () => {
     return (
         <div className='absolute flex hover:cursor-pointer flex-col gap-1 top-10 left-37 w-45 rounded-sm h-65 pt-4 bg-[#26313f] border border-gray-400 shadow-lg z-10'>
-            <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
+            <Link to={'/rich-text-editor'}> <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><LuLetterText /></span>
-                <p className='font-sans text-sm' onClick={()=>toast.info("yes")}>Rich Text Editor</p>
+               <p className='font-sans text-sm' onClick={()=>toast.info("yes")}>Rich Text Editor</p>
             </div>
+            </Link>
+            <Link to={'/markdown-editor'}>
             <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><RiMarkdownLine />
                 </span>
                 <p className='font-sans text-sm'>Markdown Editor</p>
             </div>
+            </Link>
             <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><IoTimer />
                 </span>

@@ -13,7 +13,7 @@ const Notes = ({ notes, setNotes,duration,setDuration }) => {
           <label className='ml-4'>{minutes}:{(seconds != 0)?seconds:"0"+seconds}</label>
           <button onClick={()=>setDuration(0)} className='w-3 flex justify-center items-center hover:cursor-pointer mr-4 h-3 rounded-4xl border-1 border-black text-sm text-black'>x</button>
         </div>
-      }
+}
 
     </div>
   )
