@@ -1,10 +1,10 @@
 import React from 'react'
 import Notes from '../Component/NotesContainer/Notes'
 
-const Home = ({ notes, setNotes,duration,setDuration }) => {
+const Home = () => {
   return (
     <>
-      <Notes notes={notes} setDuration={setDuration} duration={duration} setNotes={setNotes}/>
+      <Notes/>
     </>
   )
 }

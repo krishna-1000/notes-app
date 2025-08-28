@@ -19,21 +19,19 @@ import MarkDownEditor from './Pages/MarkDownEditor';
 
 function AppWrapper() {
   const location = useLocation();
-  const { notes, setNotes, handelDelete } = useNote();
-  const { handelCopy, handelShare } = useNoteFunc();
   const { duration, setDuration } = useTimer();
 
   const renderNavbar = () => {
 
     switch (location.pathname) {
       case '/':
-        return <Navbar onDeleteNote={handelDelete} notes={notes} setDuration={setDuration} onShareNote={() => handelShare(notes)} onCopyNote={() => handelCopy(notes)} />;
+        return <Navbar   setDuration={setDuration}  />;
       case '/rich-text-editor':
         return <NavbarPages path={location.pathname}/>;
       case '/markdown-editor':
         return <NavbarPages path={location.pathname}/>;
       default:
-        return <Navbar onDeleteNote={handelDelete} notes={notes} setDuration={setDuration} onShareNote={() => handelShare(notes)} onCopyNote={() => handelCopy(notes)} />;
+        return <Navbar   setDuration={setDuration} />;
     }
   }
   return (
@@ -41,7 +39,7 @@ function AppWrapper() {
       
         {renderNavbar()}
         <Routes>
-          <Route path='/' element={<Home notes={notes} setDuration={setDuration} duration={duration} setNotes={setNotes} />} />
+          <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About />} />
           <Route path='/rich-text-editor' element={<RichTextEditor  />} />
           <Route path='/markdown-editor' element={<MarkDownEditor  />} />

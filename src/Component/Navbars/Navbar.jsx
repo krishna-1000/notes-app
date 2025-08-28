@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoDownloadOutline } from "react-icons/io5";
@@ -17,9 +17,13 @@ import DownloadDropDown from '../NabarComponent/DownloadDropDown/DownloadDropDow
 import TImerbox from '../NabarComponent/TimerBox/TImerbox';
 import useFullScreen from '../../hooks/useFullScreen';
 import { Link } from 'react-router-dom';
+import useNoteFunc from '../../hooks/useNoteFunc';
+import useNote from '../../hooks/useNote';
 
-const Navbar = ({ notes, onDeleteNote, onCopyNote, onShareNote, setDuration }) => {
+const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const {notes,handelDelete} = useNote();
+    const {handelCopy,handelShare} = useNoteFunc();
     const [DownloadisOpen, setDownloadIsOpen] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
     const [isTimerOpen, setIsTimerOpen] = useState(false);
@@ -41,12 +45,12 @@ const Navbar = ({ notes, onDeleteNote, onCopyNote, onShareNote, setDuration }) =
                 <span className='text-2xl font-extrabold' onClick={() => setIsOpen(!isOpen)}><IoIosArrowDown />
                 </span>
                 {isOpen && <DropDown />}
-                <span className='text-2xl font-extrabold' onClick={onDeleteNote}><RiDeleteBinLine />
+                <span className='text-2xl font-extrabold' onClick={handelDelete}><RiDeleteBinLine />
                 </span>
                 <span className='text-2xl font-extrabold' onClick={() => setDownloadIsOpen(!DownloadisOpen)}><IoDownloadOutline />
                 </span>
-                {DownloadisOpen && <DownloadDropDown notes={notes}/>}
-                <span className='text-2xl font-extrabold' onClick={onCopyNote}><MdOutlineFileCopy />
+                {DownloadisOpen && <DownloadDropDown/>}
+                <span className='text-2xl font-extrabold' onClick={()=>handelCopy(notes)}><MdOutlineFileCopy />
                 </span>
                 <span className='text-2xl font-extrabold'><CiSettings />
                 </span>
@@ -54,10 +58,10 @@ const Navbar = ({ notes, onDeleteNote, onCopyNote, onShareNote, setDuration }) =
                 </span>
                 <span className='text-2xl font-extrabold' onClick={() => setIsTimerOpen(!isTimerOpen)}><TfiTimer />
                 </span>
-                <span className='text-2xl font-extrabold' onClick={onShareNote}><CiShare2 />
+                <span className='text-2xl font-extrabold' onClick={()=>handelShare(notes)} ><CiShare2 />
                 </span>
             </div>
-            {isTimerOpen && <TImerbox setDuration={setDuration} setIsopen={setIsTimerOpen} />}
+            {isTimerOpen && <TImerbox setIsopen={setIsTimerOpen} />}
             <div className='flex justify-end gap-4 pr-4 items-center h-full w-1/2 mr-8  text-white'>
                 <span className='text-2xl font-extrabold'><BsWindowStack />
                 </span>

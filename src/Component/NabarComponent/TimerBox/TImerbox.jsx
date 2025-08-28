@@ -1,6 +1,8 @@
 import React from 'react'
 import { IoClose } from "react-icons/io5";
-const TImerbox = ({setIsopen,setDuration}) => {
+import useCountDown from '../../../hooks/useCountDown';
+const TImerbox = ({setIsopen}) => {
+    const {setDuration} = useCountDown();
     const handleOnclick=(time)=>{
         setIsopen(false);
         setDuration(time);
