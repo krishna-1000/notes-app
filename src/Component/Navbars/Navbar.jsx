@@ -17,17 +17,19 @@ import DownloadDropDown from '../NabarComponent/DownloadDropDown/DownloadDropDow
 import TImerbox from '../NabarComponent/TimerBox/TImerbox';
 import useFullScreen from '../../hooks/useFullScreen';
 import { Link } from 'react-router-dom';
-import useNoteFunc from '../../hooks/useNoteFunc';
 import useNote from '../../hooks/useNote';
+import noteFunction from '../../utils/NoteFunction';
+import Settingbox from '../NabarComponent/Setting/Settingbox';
+import {useModal} from '../../hooks/useModal.jsx'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const {notes,handelDelete} = useNote();
-    const {handelCopy,handelShare} = useNoteFunc();
+    const {handelCopy,handelShare} = noteFunction();
     const [DownloadisOpen, setDownloadIsOpen] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
-    const [isTimerOpen, setIsTimerOpen] = useState(false);
     const { goFullScreen, exitFullScreen } = useFullScreen();
+    const {openModal} = useModal()
     const handlePopup = () => {
         if (isOpen) {
 
@@ -52,16 +54,15 @@ const Navbar = () => {
                 {DownloadisOpen && <DownloadDropDown/>}
                 <span className='text-2xl font-extrabold' onClick={()=>handelCopy(notes)}><MdOutlineFileCopy />
                 </span>
-                <span className='text-2xl font-extrabold'><CiSettings />
+                <span className='text-2xl font-extrabold' onClick={()=>openModal(<Settingbox/>)} ><CiSettings />
                 </span>
                 <span className='text-2xl font-extrabold'><IoMusicalNoteOutline />
                 </span>
-                <span className='text-2xl font-extrabold' onClick={() => setIsTimerOpen(!isTimerOpen)}><TfiTimer />
+                <span className='text-2xl font-extrabold' onClick={() => openModal(<TImerbox/>)}><TfiTimer />
                 </span>
                 <span className='text-2xl font-extrabold' onClick={()=>handelShare(notes)} ><CiShare2 />
                 </span>
             </div>
-            {isTimerOpen && <TImerbox setIsopen={setIsTimerOpen} />}
             <div className='flex justify-end gap-4 pr-4 items-center h-full w-1/2 mr-8  text-white'>
                 <span className='text-2xl font-extrabold'><BsWindowStack />
                 </span>

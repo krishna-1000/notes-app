@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 
-const useNoteFunc = () => {
+const noteFunction = () => {
     const handelCopy = (text)=>{
         navigator.clipboard.writeText(text)
         toast.info("Copied to clipboard",{position:"bottom-center",autoClose:1000})
@@ -21,4 +21,4 @@ const useNoteFunc = () => {
     return {handelCopy,handelShare};
 }
 
-export default useNoteFunc;
+export default noteFunction;

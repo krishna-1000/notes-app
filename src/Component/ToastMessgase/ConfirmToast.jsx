@@ -2,7 +2,8 @@ import React from 'react'
 
 const ConfirmToast = ({message,onConfirm,onCancel,closeToast}) => {
   return (
-    <div className='bg-white p-2 flex flex-col gap-2 rounded shadow-lg '>
+    
+    <div className='bg-white p-2 w-full h-full flex flex-col gap-2 rounded shadow-lg '>
       <p className='text-2xl text-black'>{message}</p>
       <div className='flex justify-center'>
         <button onClick={
