@@ -21,9 +21,13 @@ import useNote from '../../hooks/useNote';
 import noteFunction from '../../utils/NoteFunction';
 import Settingbox from '../NabarComponent/Setting/Settingbox';
 import {useModal} from '../../hooks/useModal.jsx'
+import { useProfile } from '../../hooks/useProfile.jsx';
+
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+  const {isProfileopen,setIsProfileOpen} = useProfile();
+    
     const {notes,handelDelete} = useNote();
     const {handelCopy,handelShare} = noteFunction();
     const [DownloadisOpen, setDownloadIsOpen] = useState(false);
@@ -82,6 +86,7 @@ const Navbar = () => {
                     </span>
                 }
                <Link to={"/about"}> <span className='text-gray-400 font-serif cursor-pointer hover:text-gray-200'>About</span></Link>
+               <img onClick={()=>setIsProfileOpen(true)} className='bg-white rounded-2xl bg-repeat' src='public/img/vite.svg'></img>
             </div>
         </div>
     )

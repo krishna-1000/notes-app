@@ -47,7 +47,8 @@ export const NotesProvider = ({ children }) => {
         autoClose:400
        })
       }catch(error){
-        console.log("eroror occured in save");
+        console.log(localStorage.getItem("token"));
+        console.log("eroror occured in save"+error);
       }
     },1000)
     return () => clearTimeout(timeout);

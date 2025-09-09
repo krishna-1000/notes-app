@@ -21,7 +21,7 @@ export const NotesLocalStorage = () => {
         try {
             localStorage.setItem(NOTES_API, JSON.stringify(notes))
         } catch (error) {
-            return toast.info("Error occured in Saving Note")
+            return toast.info("Error occured in Saving Note" + error)
         }
     }
 

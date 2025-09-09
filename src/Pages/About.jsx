@@ -4,15 +4,17 @@ import api from '../api/api'
 import { createNote, getAllNote } from '../api/Notesapi'
 import { NotesLocalStorage } from '../Service/NotesLocalStorage'
 import Modal from '../Component/Modal/Modal'
-import Settingbox from '../Component/NabarComponent/Setting/Settingbox'
 import { useModal } from '../hooks/useModal'
+import ProfileBox from '../Component/NabarComponent/Profile/ProfileBox'
 
 const About = () => {
-  const { openModal } = useModal();
+  const [isopen,setIsOpen] = useState(false);
+  
   return (
 
     <div>
-      <button onClick={() => openModal(<Settingbox />)}>CLick me</button>
+      <button onClick={() => setIsOpen(!isopen)} className='bg-white'>CLick me</button>
+      {isopen&&<ProfileBox setIsOpen={setIsOpen} />}
     </div>
   )
 }

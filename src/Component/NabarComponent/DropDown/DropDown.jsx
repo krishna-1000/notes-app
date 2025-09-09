@@ -60,11 +60,12 @@ const DropDown = () => {
                 </span>
                 <p className='font-sans text-sm'>Deep Breath</p>
             </div>
-            <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
+           <Link to={'drawing-pad'}> <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><CiPen />
                 </span>
                 <p className='font-sans text-sm '>Drawingpad</p>
             </div>
+            </Link>
             <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><CgGoogleTasks />
                 </span>
