@@ -16,6 +16,10 @@ import DrawingPad from './Pages/DrawingPad';
 import Dashboard from './Pages/Dashboard';
 import PrivateRoute from './Component/PrivateRoutesProvider/PrivateRoute';
 import Login from './Component/AuthComponent/Login';
+import SignUp from './Component/AuthComponent/SignUp';
+import ForgotPasswordUser from './Component/AuthComponent/ForgotPassword';
+import VoiceNotes from './Pages/VoiceNotes';
+import VoiceNotes from './Pages/SimpleKanban';
 
 
 function AppWrapper() {
@@ -25,7 +29,7 @@ function AppWrapper() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { theme } = useSetting()
   const renderNavbar = () => {
-    if (!token) return null;
+
     switch (location.pathname) {
       case '/home':
         return <Navbar isModalOpen={setIsModalOpen} />;
@@ -35,6 +39,10 @@ function AppWrapper() {
         return <NavbarPages path={location.pathname} />;
       case '/drawing-pad':
         return <NavbarPages path={location.pathname} />;
+      case '/voice-notes':
+        return <NavbarPages path={location.pathname} />;
+      case '/simple-kanban':
+        return <NavbarPages path={location.pathname} />;
       default:
         return null;
     }
@@ -43,20 +51,46 @@ function AppWrapper() {
     <div style={theme ? { backgroundColor: 'white', color: 'black' } : { backgroundColor: 'black', color: 'white' }}>
       {renderNavbar()}
       <Routes>
+        {/* public ROutes */}
         <Route path='/' element={<Dashboard />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+        <Route path='/forgotpassword' element={<ForgotPasswordUser />}></Route>
 
-
+        {/* Private ROutes */}
         <Route path='/home' element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>} />
-        <Route path='/about' element={<About />} />
-        <Route path='/rich-text-editor' element={<RichTextEditor />} />
-        <Route path='/markdown-editor' element={<MarkDownEditor />} />
-        <Route path='/drawing-pad' element={<DrawingPad />} />
-      </Routes>
 
+            <Home />
+         
+        } />
+
+        <Route path='/about' element=
+          {<PrivateRoute>
+            <About />
+          </PrivateRoute>}
+        />
+        <Route path='/rich-text-editor' element=
+          {<PrivateRoute>
+            <RichTextEditor />
+          </PrivateRoute>} />
+        <Route path='/markdown-editor' element={
+          <PrivateRoute>
+            <MarkDownEditor />
+          </PrivateRoute>} />
+        <Route path='/drawing-pad' element={
+          <PrivateRoute>
+            <DrawingPad />
+          </PrivateRoute>} />
+        <Route path='/voice-notes' element={
+          <PrivateRoute>
+           <VoiceNotes/>
+          </PrivateRoute>} />
+        <Route path='/simple-kanban' element={
+          <PrivateRoute>
+           <SimpleKanban/>
+          </PrivateRoute>} />
+      </Routes>
+ 
 
     </div>
   )
@@ -66,8 +100,8 @@ function AppWrapper() {
 function App() {
 
   return (
-        <AppWrapper />
-  
+    <AppWrapper />
+
   )
 
 }

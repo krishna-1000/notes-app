@@ -47,7 +47,7 @@ const Navbar = () => {
     return (
         <div onClick={() => handlePopup()} className='bg-[#26313f] h-11 flex justify-between items-center  '>
             <div className='flex gap-4 items-center ml-15    text-white h-full w-1/2'>
-                <Link to={"/"}><h1 className='text-cyan-400 drop-shadow-cyan-300 font-extrabold cursor-pointer'>Notepad</h1></Link>
+                <Link to={"/home"}><h1 className='text-cyan-400 drop-shadow-cyan-300 font-extrabold cursor-pointer'>Notepad</h1></Link>
                 <span className='text-2xl font-extrabold' onClick={() => setIsOpen(!isOpen)}><IoIosArrowDown />
                 </span>
                 {isOpen && <DropDown />}

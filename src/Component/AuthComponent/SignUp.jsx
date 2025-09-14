@@ -1,32 +1,24 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal'
 import { toast } from 'react-toastify'
-import { LoginUser } from '../../api/Authapi';
+import api from '../../api/api';
+import { SignUpUser } from '../../api/Authapi';
 
 
-const Login = () => {
+const SignUp = () => {
     const navigate = useNavigate();
-    const { closeModal } = useModal();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [resdata, setResData] = useState([]);
 
 
-    const onClickLoginUser = async (e) => {
+    const onClickSignUpUser = async (e) => {
         e.preventDefault();
         try {
-            const res = await LoginUser(username, password);
-            if (res.data.token != "") {
-                setResData(res.data);
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("username", res.data.username)
-                console.log(res.data.id);
-                localStorage.setItem("userid",res.data.id);
-        
-                console.log(res.data);
-                window.location.href = "/home";
-                toast.success("Login successfully", { position: "top-center", autoClose: 1000 })
+            const res = await SignUpUser(username, password)
+            if (res != "") {
+                toast.info(res.data, { position: "top-center", autoClose: 1000 });
+                navigate('/login')
             }
 
         } catch (e) {
@@ -41,16 +33,13 @@ const Login = () => {
         }
     }
 
-
     return (
-        <form onSubmit={(e) => onClickLoginUser(e)}>
+        <form onSubmit={(e) => onClickSignUpUser(e)}>
             <div className='text-black relative top-25 left-1/3 rounded-2xl bg-white gap-10 w-[60vh] h-[70vh] flex flex-col'>
 
-                <div onClick={()=>window.history.back()} className='flex mr-3 cursor-pointer justify-end'>back</div>
-                <h1 className='text-3xl  text-green-500 self-center'>Login</h1>
+                <div onClick={() => window.history.back()} className='flex mr-3 cursor-pointer justify-end'>back</div>
 
-
-
+                <h1 className='text-3xl text-green-500 self-center'>SignUp</h1>
                 <div className='flex flex-col gap-3'>
                     <label>Username</label>
                     <input required
@@ -67,11 +56,10 @@ const Login = () => {
                         className='outline-none border-b-2 border-b-gray-500'
                         type='password'
                         placeholder='Enter password'></input>
-                    <label onClick={()=>navigate("/forgotpassword")} className='text-blue-500 text-sm cursor-pointer'>forgot password</label>
                 </div>
                 <footer className='flex flex-col justify-center'>
-                    <button type='submit' className='bg-green-400 rounded-md pl-3 pr-3'>Login</button>
-                    <label onClick={() => navigate("/signup")} className='text-blue-400 underline text-center'>Signup</label>
+                    <button type='submit' className='bg-green-400 rounded-md pl-3 pr-3'>SignUp</button>
+                    <label onClick={() => navigate("/login")} className='text-blue-400 underline text-center'>Login</label>
                 </footer>
 
             </div>
@@ -79,4 +67,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default SignUp

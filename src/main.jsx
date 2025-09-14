@@ -10,28 +10,25 @@ import Modal from './Component/Modal/Modal.jsx';
 import SettingProvider from './contextApi/SettingContextApi.jsx';
 import ProfileProvider from './contextApi/ProfileContextApi.jsx';
 import ProfileBox from './Component/NabarComponent/Profile/ProfileBox.jsx';
-import LoginContextProvider from './contextApi/LoginContextAPi.jsx';
 import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <NotesProvider>
-      <TimerProvider>
-        <SettingProvider>
-          <ModelProvider>
-            <ProfileProvider>
-              <LoginContextProvider>
-              <App />
-              <Modal />
-              </LoginContextProvider>
-              <ProfileBox/>
-            </ProfileProvider>
-          </ModelProvider>
-        </SettingProvider>
-      </TimerProvider>
-    </NotesProvider>
-    <ToastContainer />
+      <NotesProvider>
+        <TimerProvider>
+          <SettingProvider>
+            <ModelProvider>
+              <ProfileProvider>
+                  <App />
+                  <Modal />
+                <ProfileBox />
+              </ProfileProvider>
+            </ModelProvider>
+          </SettingProvider>
+        </TimerProvider>
+      </NotesProvider>
+      <ToastContainer />
     </BrowserRouter>
   </StrictMode>,
 )

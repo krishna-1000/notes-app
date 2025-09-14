@@ -15,7 +15,7 @@ const ProfileBox = () => {
             <div className='flex flex-col relative border-2 border-white bg-black rounded-2xl shadow-lg w-[25vw] h-[92vh] mr-1 max-w-[90%]  z-10'>
                 <header className='border-b-2 border-gray-400 h-1/4  flex flex-col items-center justify-center'>
                     <img className='rounded-3xl  bg-white h-15 w-15 ' src='public/img/vite.svg'></img>
-                    <p>krishnpal patidar <span className='text-2xl cursor-pointer'>+</span></p>
+                    <p>{localStorage.getItem("username")} <span className='text-2xl cursor-pointer'>+</span></p>
                     
                 </header>
 
