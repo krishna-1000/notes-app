@@ -15,7 +15,7 @@ export const NotesProvider = ({ children }) => {
   useEffect(() => {
 
     const token = localStorage.getItem('token');
-    if (token == null) return;
+    if (token == "") return;
     const fetchNotes = async () => {
 
       try {
@@ -39,10 +39,12 @@ export const NotesProvider = ({ children }) => {
 
 
   useEffect(() => {
+
+
+
     const token = localStorage.getItem('token');
 
-    if (token == null) return;
-
+    if (token == "") return;
 
     const timeout = setTimeout(async () => {
       try {

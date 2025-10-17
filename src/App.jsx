@@ -19,7 +19,7 @@ import Login from './Component/AuthComponent/Login';
 import SignUp from './Component/AuthComponent/SignUp';
 import ForgotPasswordUser from './Component/AuthComponent/ForgotPassword';
 import VoiceNotes from './Pages/VoiceNotes';
-import VoiceNotes from './Pages/SimpleKanban';
+import SimpleKanban from './Pages/SimpleKanban';
 
 
 function AppWrapper() {

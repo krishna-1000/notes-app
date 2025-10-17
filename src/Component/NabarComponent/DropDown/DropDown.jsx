@@ -45,12 +45,14 @@ const DropDown = () => {
                     <p className='font-sans text-sm'>Voice Notes</p>
                 </div>
             </Link>
+            <Link to={'/simple-kanban'}>
+                <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
+                    <span><RiKanbanView2 />
+                    </span>
+                    <p className='font-sans text-sm'>Simple Kanban</p>
+                </div>
+            </Link>
 
-            <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
-                <span><RiKanbanView2 />
-                </span>
-                <p className='font-sans text-sm'>Simple Kanban</p>
-            </div>
             <div className='flex gap-2 items-center ml-4 hover:bg-[#38485e] cursor-pointer'>
                 <span><BsCashCoin />
                 </span>

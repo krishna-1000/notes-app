@@ -84,6 +84,7 @@ const VoiceNotes = () => {
             chunks.current = [];
             const url = URL.createObjectURL(blob.current);
             setAudioURL(prev => [...prev, url]);
+
         };
         mediaRecorderRef.current.stop();
         // Stop all tracks of the mic stream
@@ -203,6 +204,7 @@ const VoiceNotes = () => {
                                     <p className='text-sm'>2 minute ago</p>
                                 </header>
                                 <main className='flex flex-col gap-3'>
+
                                     <audio src={item} className='w-full' controls></audio>
                                     <div className='w-full'>
                                         <textarea placeholder='Add notes here...' className='w-full h-20 outline-none shadow-sm shadow-gray-400 outline-1 '></textarea>
