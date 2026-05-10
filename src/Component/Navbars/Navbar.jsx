@@ -47,7 +47,7 @@ const Navbar = () => {
     return (
         <div onClick={() => handlePopup()} className='bg-[#26313f] h-11 flex justify-between items-center  '>
             <div className='flex gap-4 items-center ml-15    text-white h-full w-1/2'>
-                <Link to={"/home"}><h1 className='text-cyan-400 drop-shadow-cyan-300 font-extrabold cursor-pointer'>Notepad</h1></Link>
+                <Link to={"/"}><h1 className='text-cyan-400 drop-shadow-cyan-300 font-extrabold cursor-pointer'>Notepad</h1></Link>
                 <span className='text-2xl font-extrabold' onClick={() => setIsOpen(!isOpen)}><IoIosArrowDown />
                 </span>
                 {isOpen && <DropDown />}
@@ -60,18 +60,14 @@ const Navbar = () => {
                 </span>
                 <span className='text-2xl font-extrabold' onClick={()=>openModal(<Settingbox/>)} ><CiSettings />
                 </span>
-                <span className='text-2xl font-extrabold'><IoMusicalNoteOutline />
-                </span>
+                
                 <span className='text-2xl font-extrabold' onClick={() => openModal(<TImerbox/>)}><TfiTimer />
                 </span>
                 <span className='text-2xl font-extrabold' onClick={()=>handelShare(notes)} ><CiShare2 />
                 </span>
             </div>
             <div className='flex justify-end gap-4 pr-4 items-center h-full w-1/2 mr-8  text-white'>
-                <span className='text-2xl font-extrabold'><BsWindowStack />
-                </span>
-                <span className='text-2xl font-extrabold'><MdOutlineKeyboard />
-                </span>
+               
                 {isFullScreen ?
                     <span className='text-2xl font-extrabold'
                         onClick={()=>{
@@ -85,8 +81,6 @@ const Navbar = () => {
                             }}><AiOutlineFullscreen />
                     </span>
                 }
-               <Link to={"/about"}> <span className='text-gray-400 font-serif cursor-pointer hover:text-gray-200'>About</span></Link>
-               <img onClick={()=>setIsProfileOpen(true)} className='bg-white rounded-2xl bg-repeat' src='public/img/vite.svg'></img>
             </div>
         </div>
     )

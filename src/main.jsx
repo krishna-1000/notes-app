@@ -9,7 +9,6 @@ import TimerProvider from './contextApi/TimerContextApi.jsx';
 import Modal from './Component/Modal/Modal.jsx';
 import SettingProvider from './contextApi/SettingContextApi.jsx';
 import ProfileProvider from './contextApi/ProfileContextApi.jsx';
-import ProfileBox from './Component/NabarComponent/Profile/ProfileBox.jsx';
 import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
@@ -22,7 +21,6 @@ createRoot(document.getElementById('root')).render(
               <ProfileProvider>
                   <App />
                   <Modal />
-                <ProfileBox />
               </ProfileProvider>
             </ModelProvider>
           </SettingProvider>

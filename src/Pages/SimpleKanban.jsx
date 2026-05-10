@@ -1,63 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { RiDeleteBinLine } from "react-icons/ri";
-import api from '../api/api';
-import {toast} from 'react-toastify'
-import { deleteKanban } from '../api/kanbanapi';
-
+import { toast } from 'react-toastify'
+import localforage from "localforage";
 
 const SimpleKanban = () => {
   const arr = ["To Do", "In Progress", "Done"]
   const [todolist, setToDoList] = useState([]);
   const [todo, setToDo] = useState({});
-  const [saveFlag,setSaveFlag] = useState(false);
-  
+  const [saveFlag, setSaveFlag] = useState(false);
 
   useEffect(() => {
-    const tok = localStorage.getItem('token');
-    if(tok == "") return;
-    const fetchNotes = async () => {
-      const res = await api.get("/getkanban", {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      setToDoList(res.data);
+    const fetchKanban = async () => {
+      const loadKanban = await localforage.getItem("kanban");
+
+      if (loadKanban) {
+        setToDoList(loadKanban);
+      }
     }
-    fetchNotes();
-  }, [saveFlag])
+    fetchKanban();
+  }, [])
+
 
   const handleSetTodo = async (item) => {
-    const response = await api.post('/savekanban', {
-      content: `${todo.todoItem}`,
-      status: `${item}`
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-    toast.info("saved",{
-      position:"bottom-center",
-      autoClose:500
-    
-    })
-    setToDoList(prev=>[...prev,{content:todo.todoItem,status:item}]);
-    // localStorage.setItem("todolist", JSON.stringify(cunstructed_todolist));
-    setToDo("");
-    setSaveFlag(!saveFlag)
+
+    try {
+      setToDoList(prev => [...prev, { content: todo.todoItem, status: item }]);
+
+      const res = await localforage.setItem("kanban", [{ content: todo.todoItem, status: item }]
+
+      );
+      setToDo("");
+    } catch (error) {
+      console.error(error)
+    }
+
 
   }
-  const handleDeleteTodo = async (ind,id) => {
-
-  const res = await deleteKanban(id)
-  console.log(res.data)
-
-
- 
+  const handleDeleteTodo = async (ind, id) => {
 
     const newList = todolist.filter((_, index) => index !== ind);
     setToDoList(newList);
-    localStorage.setItem("todolist", JSON.stringify(newList));
+    localforage.setItem("kanban", newList);
 
   }
   return (
@@ -76,7 +59,7 @@ const SimpleKanban = () => {
                         return todoItem.status === item &&
                           <li className=' bg-blue-300 flex justify-between items-center text-black font-bold pl-3 w-full h-full min-h-10 ' key={todoIndex}>
                             <span>{todoItem.content}</span>
-                            <span onClick={() => handleDeleteTodo(todoIndex,todoItem.id)}><RiDeleteBinLine size={25} color='red' className='mr-3' /></span>
+                            <span onClick={() => handleDeleteTodo(todoIndex, todoItem.id)}><RiDeleteBinLine size={25} color='red' className='mr-3' /></span>
 
                           </li>
                       })

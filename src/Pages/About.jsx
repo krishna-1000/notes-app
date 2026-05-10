@@ -1,10 +1,7 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import api from '../api/api'
-import { createNote, getAllNote } from '../api/Notesapi'
 import Modal from '../Component/Modal/Modal'
 import { useModal } from '../hooks/useModal'
-import ProfileBox from '../Component/NabarComponent/Profile/ProfileBox'
 
 const About = () => {
   const [isopen,setIsOpen] = useState(false);

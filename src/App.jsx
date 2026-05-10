@@ -13,17 +13,13 @@ import MarkDownEditor from './Pages/MarkDownEditor';
 import { useState } from 'react';
 import { useSetting } from './hooks/useSetting';
 import DrawingPad from './Pages/DrawingPad';
-import Dashboard from './Pages/Dashboard';
 import PrivateRoute from './Component/PrivateRoutesProvider/PrivateRoute';
-import Login from './Component/AuthComponent/Login';
-import SignUp from './Component/AuthComponent/SignUp';
-import ForgotPasswordUser from './Component/AuthComponent/ForgotPassword';
 import VoiceNotes from './Pages/VoiceNotes';
 import SimpleKanban from './Pages/SimpleKanban';
+import CaseConverter from './Pages/CaseConverter';
 
 
 function AppWrapper() {
-  const token = localStorage.getItem("token");
 
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +27,7 @@ function AppWrapper() {
   const renderNavbar = () => {
 
     switch (location.pathname) {
-      case '/home':
+      case '/':
         return <Navbar isModalOpen={setIsModalOpen} />;
       case '/rich-text-editor':
         return <NavbarPages path={location.pathname} />;
@@ -43,6 +39,8 @@ function AppWrapper() {
         return <NavbarPages path={location.pathname} />;
       case '/simple-kanban':
         return <NavbarPages path={location.pathname} />;
+      case '/case-converter':
+        return <NavbarPages path={location.pathname} />;
       default:
         return null;
     }
@@ -51,46 +49,26 @@ function AppWrapper() {
     <div style={theme ? { backgroundColor: 'white', color: 'black' } : { backgroundColor: 'black', color: 'white' }}>
       {renderNavbar()}
       <Routes>
-        {/* public ROutes */}
-        <Route path='/' element={<Dashboard />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/signup' element={<SignUp />}></Route>
-        <Route path='/forgotpassword' element={<ForgotPasswordUser />}></Route>
 
-        {/* Private ROutes */}
-        <Route path='/home' element={
+        <Route path='/' element={<Home />}>
+        </Route>
 
-            <Home />
-         
-        } />
-
-        <Route path='/about' element=
-          {<PrivateRoute>
-            <About />
-          </PrivateRoute>}
+        <Route path='/about' element={
+          <About />
+        }
         />
-        <Route path='/rich-text-editor' element=
-          {<PrivateRoute>
-            <RichTextEditor />
-          </PrivateRoute>} />
-        <Route path='/markdown-editor' element={
-          <PrivateRoute>
-            <MarkDownEditor />
-          </PrivateRoute>} />
-        <Route path='/drawing-pad' element={
-          <PrivateRoute>
-            <DrawingPad />
-          </PrivateRoute>} />
+        
+
         <Route path='/voice-notes' element={
-          <PrivateRoute>
-           <VoiceNotes/>
-          </PrivateRoute>} />
+          <VoiceNotes />
+        } />
         <Route path='/simple-kanban' element={
-          <PrivateRoute>
-           <SimpleKanban/>
-          </PrivateRoute>} />
+          <SimpleKanban />
+        } />
+        <Route path='/case-converter' element={
+          <CaseConverter />
+        } />
       </Routes>
- 
 
     </div>
   )

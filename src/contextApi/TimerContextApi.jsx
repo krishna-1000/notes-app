@@ -7,7 +7,7 @@ const TimerProvider = ({children}) => {
 
     const timerCountDown = (initialMinutes = 1) => {
       const [timeLeft, setTimeLeft] = useState(initialMinutes * 60);
-    
+      
       useEffect(() => {
         // reset when initialMinutes changes
         setTimeLeft(initialMinutes * 60);
