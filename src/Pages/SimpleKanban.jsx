@@ -11,8 +11,9 @@ const SimpleKanban = () => {
 
   useEffect(() => {
     const fetchKanban = async () => {
-      const loadKanban = await localforage.getItem("kanban");
 
+      const loadKanban = await localforage.getItem("kanban");
+      console.log(loadKanban)
       if (loadKanban) {
         setToDoList(loadKanban);
       }
@@ -24,16 +25,22 @@ const SimpleKanban = () => {
   const handleSetTodo = async (item) => {
 
     try {
-      setToDoList(prev => [...prev, { content: todo.todoItem, status: item }]);
+      if (!todo || !todo.todoItem) {
+        return;
+      }
+      const newEntry = { content: todo.todoItem, status: item };
+      const updatedList = [...todolist, newEntry];
+       setToDoList(updatedList);
 
-      const res = await localforage.setItem("kanban", [{ content: todo.todoItem, status: item }]
+      
 
-      );
+        await localforage.setItem("kanban", updatedList);
+      
+
       setToDo("");
     } catch (error) {
       console.error(error)
     }
-
 
   }
   const handleDeleteTodo = async (ind, id) => {
@@ -44,7 +51,7 @@ const SimpleKanban = () => {
 
   }
   return (
-    <div className='flex justify-evenly select-none'>
+    <div className=' flex flex-col md:flex-row justify-evenly select-none'>
       {
         arr.map((item, index) => (
           <div className='h-[90vh]' key={index}>
