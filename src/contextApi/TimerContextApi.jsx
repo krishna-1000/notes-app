@@ -3,7 +3,7 @@ export const TimerContext = createContext();
 const TimerProvider = ({children}) => {
     const [duration,setDuration] = useState(0);
     const [soundCheckbox,setSoundCheckbox] = useState(false);
-    const audioRef = useRef(new Audio("../../public/chimeMusic.mp3"));
+    const audioRef = useRef(new Audio("/chimeMusic.mp3"));
 
     const timerCountDown = (initialMinutes = 1) => {
       const [timeLeft, setTimeLeft] = useState(initialMinutes * 60);
