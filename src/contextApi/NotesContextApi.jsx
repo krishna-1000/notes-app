@@ -50,7 +50,7 @@ export const NotesProvider = ({ children }) => {
   const addNote = (text) => {
     setNotes(text);
   }
-  const handelDelete = () => {
+  const handelDeleteNotes = () => {
     toast((props) => {
       return <ConfirmToast {...props} message={"Do you want to delete?"}
         onCancel={() => toast.dismiss()}
@@ -67,7 +67,7 @@ export const NotesProvider = ({ children }) => {
     })
   }
   return (
-    <NotesContext.Provider value={{ notes, addNote, handelDelete }}>
+    <NotesContext.Provider value={{ notes, addNote, handelDeleteNotes }}>
       {children}
     </NotesContext.Provider>
   )

@@ -20,20 +20,20 @@ import { Link } from 'react-router-dom';
 import useNote from '../../hooks/useNote';
 import noteFunction from '../../utils/NoteFunction';
 import Settingbox from '../NabarComponent/Setting/Settingbox';
-import {useModal} from '../../hooks/useModal.jsx'
+import { useModal } from '../../hooks/useModal.jsx'
 import { useProfile } from '../../hooks/useProfile.jsx';
 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-  const {isProfileopen,setIsProfileOpen} = useProfile();
-    
-    const {notes,handelDelete} = useNote();
-    const {handelCopy,handelShare} = noteFunction();
+    const { isProfileopen, setIsProfileOpen } = useProfile();
+
+    const { notes, handelDeleteNotes } = useNote();
+    const { handelCopy, handelShare } = noteFunction();
     const [DownloadisOpen, setDownloadIsOpen] = useState(false);
     const [isFullScreen, setIsFullScreen] = useState(false);
     const { goFullScreen, exitFullScreen } = useFullScreen();
-    const {openModal} = useModal()
+    const { openModal } = useModal()
     const handlePopup = () => {
         if (isOpen) {
 
@@ -45,44 +45,50 @@ const Navbar = () => {
 
     }
     return (
-        <div onClick={() => handlePopup()} className='bg-[#26313f] h-11 flex justify-between items-center  '>
-            <div className='flex gap-4 items-center ml-15    text-white h-full w-1/2'>
-                <Link to={"/"}><h1 className='text-cyan-400 drop-shadow-cyan-300 font-extrabold cursor-pointer'>Notepad</h1></Link>
-                <span className='text-2xl font-extrabold' onClick={() => setIsOpen(!isOpen)}><IoIosArrowDown />
-                </span>
-                {isOpen && <DropDown />}
-                <span className='text-2xl font-extrabold' onClick={handelDelete}><RiDeleteBinLine />
-                </span>
-                <span className='text-2xl font-extrabold' onClick={() => setDownloadIsOpen(!DownloadisOpen)}><IoDownloadOutline />
-                </span>
-                {DownloadisOpen && <DownloadDropDown/>}
-                <span className='text-2xl font-extrabold' onClick={()=>handelCopy(notes)}><MdOutlineFileCopy />
-                </span>
-                <span className='text-2xl font-extrabold' onClick={()=>openModal(<Settingbox/>)} ><CiSettings />
-                </span>
-                
-                <span className='text-2xl font-extrabold' onClick={() => openModal(<TImerbox/>)}><TfiTimer />
-                </span>
-                <span className='text-2xl font-extrabold' onClick={()=>handelShare(notes)} ><CiShare2 />
-                </span>
-            </div>
-            <div className='flex justify-end gap-4 pr-4 items-center h-full w-1/2 mr-8  text-white'>
-               
-                {isFullScreen ?
-                    <span className='text-2xl font-extrabold'
-                        onClick={()=>{
-                            exitFullScreen()
-                            setIsFullScreen(false)
-                            }}><AiOutlineFullscreenExit />
-                    </span>:<span className='text-2xl font-extrabold'
-                        onClick={()=>{
-                            goFullScreen()
-                            setIsFullScreen(true)
-                            }}><AiOutlineFullscreen />
-                    </span>
-                }
-            </div>
+       <div onClick={handlePopup} className='bg-[#26313f] h-11 w-full flex justify-between items-center'>
+    
+    <div className='flex gap-2 items-center px-2 text-white h-full min-w-0 flex-1'>
+        <Link to="/">
+            <h1 className='text-cyan-400 font-extrabold cursor-pointer text-sm sm:text-base whitespace-nowrap'>Notepad</h1>
+        </Link>
+
+        <span
+            className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0'
+            onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
+        >
+            <IoIosArrowDown />
+        </span>
+        {isOpen && <DropDown />}
+
+        <span
+            className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0'
+            onClick={(e) => { e.stopPropagation(); setDownloadIsOpen(!DownloadisOpen); }}
+        >
+            <IoDownloadOutline />
+        </span>
+        {DownloadisOpen && <DownloadDropDown />}
+
+        <div className='hidden md:flex gap-4 items-center'>
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={handelDeleteNotes}><RiDeleteBinLine /></span>
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => handelCopy(notes)}><MdOutlineFileCopy /></span>
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => openModal(<Settingbox />)}><CiSettings /></span>
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => openModal(<TImerbox />)}><TfiTimer /></span>
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => handelShare(notes)}><CiShare2 /></span>
         </div>
+    </div>
+
+    <div className='flex items-center gap-2 px-2 text-white shrink-0'>
+        {isFullScreen ? (
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => { exitFullScreen(); setIsFullScreen(false); }}>
+                <AiOutlineFullscreenExit />
+            </span>
+        ) : (
+            <span className='text-2xl cursor-pointer hover:text-cyan-400 shrink-0' onClick={() => { goFullScreen(); setIsFullScreen(true); }}>
+                <AiOutlineFullscreen />
+            </span>
+        )}
+    </div>
+</div>
     )
 }
 
