@@ -8,12 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import About from './Pages/About';
 import Home from './Pages/Home';
 import NavbarPages from './Component/Navbars/NavbarPages';
-import RichTextEditor from './Pages/RichTextEditor';
-import MarkDownEditor from './Pages/MarkDownEditor';
+
 import { useState } from 'react';
 import { useSetting } from './hooks/useSetting';
-import DrawingPad from './Pages/DrawingPad';
-import PrivateRoute from './Component/PrivateRoutesProvider/PrivateRoute';
 import VoiceNotes from './Pages/VoiceNotes';
 import SimpleKanban from './Pages/SimpleKanban';
 import CaseConverter from './Pages/CaseConverter';

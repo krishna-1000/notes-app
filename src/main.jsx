@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { ToastContainer } from 'react-toastify';
-import { NotesProvider } from './contextApi/notesContextApi.jsx';
+import { NotesProvider } from './contextApi/NotesContextApi.jsx';
 import ModelProvider from './contextApi/ModelContextApi.jsx'
 import TimerProvider from './contextApi/TimerContextApi.jsx';
 import Modal from './Component/Modal/Modal.jsx';

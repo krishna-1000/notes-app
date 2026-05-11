@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NotesContext } from '../../contextApi/notesContextApi';
+import { NotesContext } from '../../contextApi/NotesContextApi';
 import useCountDown from '../../hooks/useCountDown';
 import useNote from '../../hooks/useNote';
 import { useSetting } from '../../hooks/useSetting';
